@@ -1,7 +1,7 @@
 //Maria Jose Vaca Lara
-//Previo 6
+//Practica 6
 //No. de cuenta: 314639136
-//Fecha de entrega: 19/09/2025
+//Fecha de entrega: 26/09/2025
 
 // Std. Includes
 #include <string>
@@ -101,7 +101,8 @@ int main( )
     // Load models
     Model Dog((char*)"Models/RedDog.obj"); //cargamos el objeto en esta linea 
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
-    
+    Model Ventana((char*)"Models/trees9.obj");//cargamos una ventana
+    Model Escritorio((char*)"Models/10107_Computer Printer_v3_L3.obj");
   
 
     // Game loop
@@ -131,11 +132,20 @@ int main( )
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         Dog.Draw(shader); //Mandamos a dibujar el objeto
 
-        model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
+       /* model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
         model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        Dog.Draw(shader);
+        Dog.Draw(shader);*/
 
+        model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Ventana.Draw(shader);
+
+        model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        Escritorio.Draw(shader);
 
         // Swap the buffers
         glfwSwapBuffers( window );
