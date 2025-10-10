@@ -1,5 +1,5 @@
 //Maria Jose Vaca Lara
-//Previo 7
+//Practica 7
 //No. de cuenta: 314639136
 //Fecha de entrega: 28/09/2025
 
@@ -105,19 +105,54 @@ int main()
 	GLfloat vertices[] =
 	{
 		// Positions            // Colors              // Texture Coords
-		-0.5f, -0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,0.0f,
-		0.5f, -0.5f, 0.0f,	   1.0f, 1.0f,1.0f,		1.0f,0.0f,
-		0.5f,  0.5f, 0.0f,     1.0f, 1.0f,1.0f,	    1.0f,1.0f,
-		-0.5f,  0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,1.0f,
-
+		//MORADO
+	-0.5f, -0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.5f,0.333f,
+	0.5f, -0.5f, 0.0f,	   1.0f, 1.0f,1.0f,		0.25f,0.333f,
+	0.5f,  0.5f, 0.0f,     1.0f, 1.0f,1.0f,	    0.25f,0.666f,
+	-0.5f,  0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.5,0.666f,
+	//VERDE
+	-0.5f, -0.5f, -1.0f,    1.0f, 1.0f,1.0f,	0.0f,0.333f,
+	-0.5f, -0.5f, 0.0f,	   1.0f, 1.0f,1.0f,		0.25f,0.333f,
+	-0.5f,  0.5f, 0.0f,     1.0f, 1.0f,1.0f,	0.25f,0.666f,
+	-0.5f,  0.5f, -1.0f,    1.0f, 1.0f,1.0f,	0.0f,0.666f,
+	//BLANCO
+	-0.5f, -0.5f, -1.0f,    1.0f, 1.0f,1.0f,	0.5f,0.666f,
+	0.5f, -0.5f, -1.0f,	   1.0f, 1.0f,1.0f,		0.5f,0.333f,
+	0.5f,  0.5f, -1.0f,     1.0f, 1.0f,1.0f,	0.75f,0.333f,
+	-0.5f,  0.5f, -1.0f,    1.0f, 1.0f,1.0f,	0.75f,0.666f,
+	//ROSA
+	0.5f, -0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.75f,0.666f,
+	0.5f, -0.5f, -1.0f,	   1.0f, 1.0f,1.0f,		0.75f,0.333f,
+	0.5f,  0.5f, -1.0f,     1.0f, 1.0f,1.0f,	1.0f,0.333f,
+	0.5f,  0.5f, 0.0f,    1.0f, 1.0f,1.0f,		1.0f,0.666f,
+	//AZUL
+	-0.5f, 0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.5f,0.666f,
+	0.5f, 0.5f, 0.0f,	   1.0f, 1.0f,1.0f,		0.25f,0.666f,
+	0.5f,  0.5f, -1.0f,     1.0f, 1.0f,1.0f,	0.25f,1.0f,
+	-0.5f,  0.5f, -1.0f,    1.0f, 1.0f,1.0f,	0.5f,1.0f,
+	//ROJO
+	-0.5f, -0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.5f,0.333f,
+	0.5f, -0.5f, 0.0f,	   1.0f, 1.0f,1.0f,		0.25f,0.333f,
+	0.5f,  -0.5f, -1.0f,     1.0f, 1.0f,1.0f,	0.25f,0.0f,
+	-0.5f, -0.5f, -1.0f,    1.0f, 1.0f,1.0f,    0.5f,0.0f,
 		
 	};
-
 	GLuint indices[] =
 	{  // Note that we start from 0!
+		/*0,1,3,
+		1,2,3*/
 		0,1,3,
-		1,2,3
-	
+		1,2,3,
+		4,5,7,
+		5,6,7,
+		8,9,11,
+		9,10,11,
+		12,13,15,
+		13,14,15,
+		16,17,19,
+		17,18,19,
+		20,21,23,
+		21,22,23,
 	};
 
 	// First, set the container's VAO (and VBO)
@@ -156,13 +191,13 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 	// Diffuse map
-	image = stbi_load("images/checker_Tex.png", &textureWidth, &textureHeight, &nrChannels,0);
+	image = stbi_load("images/dado.png", &textureWidth, &textureHeight, &nrChannels,0);
 	glBindTexture(GL_TEXTURE_2D, texture1);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	glGenerateMipmap(GL_TEXTURE_2D);
 	if (image)
 	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureWidth, textureHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else
@@ -211,7 +246,7 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		// Draw the light object (using light's vertex attributes)
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 
 		// Swap the screen buffers
