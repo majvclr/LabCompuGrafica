@@ -1,7 +1,7 @@
 //Maria Jose Vaca Lara
 //Practica 7
 //No. de cuenta: 314639136
-//Fecha de entrega: 28/09/2025
+//Fecha de entrega: 10/10/2025
 
 #include <iostream>
 #include <cmath>
