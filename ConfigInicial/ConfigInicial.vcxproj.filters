@@ -14,24 +14,39 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Archivos de origen\Shader">
-      <UniqueIdentifier>{0d0e805c-bc5b-4077-956b-a0f2fcde59df}</UniqueIdentifier>
+      <UniqueIdentifier>{447622c7-d7ae-4613-bcd1-4d405d30326a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shader\core.frag">
+    <None Include="Shader\modelLoading.frag">
       <Filter>Archivos de origen\Shader</Filter>
     </None>
-    <None Include="Shader\core.vs">
+    <None Include="Shader\modelLoading.vs">
+      <Filter>Archivos de origen\Shader</Filter>
+    </None>
+    <None Include="Shader\lamp.frag">
+      <Filter>Archivos de origen\Shader</Filter>
+    </None>
+    <None Include="Shader\lamp.vs">
+      <Filter>Archivos de origen\Shader</Filter>
+    </None>
+    <None Include="Shader\lighting.frag">
+      <Filter>Archivos de origen\Shader</Filter>
+    </None>
+    <None Include="Shader\lighting.vs">
       <Filter>Archivos de origen\Shader</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main_P3.cpp">
+    <ClCompile Include="Iluminacion.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
