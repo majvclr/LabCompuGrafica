@@ -1,6 +1,6 @@
-//Nombre: Marï¿½a Josï¿½ Vaca Lara
+//Nombre: María José Vaca Lara
 //No. de cuenta: 314639136
-//Previo prï¿½ctica 9 "Luz Direccional, Puntual y Reflector"
+//Previo práctica 9 "Luz Direccional, Puntual y Reflector"
 //Fecha de entrega: 19/10/2025
 
 #include <iostream>
@@ -17,6 +17,7 @@
 
 // GLM Mathematics
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 //Load Models
