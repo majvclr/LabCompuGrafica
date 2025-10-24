@@ -1,7 +1,7 @@
 //Nombre: María José Vaca Lara
 //No. de cuenta: 314639136
 //Previo práctica 9 "Luz Direccional, Puntual y Reflector"
-//Fecha de entrega: 19/10/2025
+//Fecha de entrega: 24/10/2025
 
 #include <iostream>
 #include <cmath>
@@ -158,10 +158,11 @@ int main()
 
 	Shader lightingShader("Shader/lighting.vs", "Shader/lighting.frag");
 	Shader lampShader("Shader/lamp.vs", "Shader/lamp.frag");
-	
-	Model Dog((char*)"Models/13517_Beach_Ball_v2_L3.obj");
+	Model Dog((char*)"Models/ball.obj");
 	Model Piso((char*)"Models/piso.obj");
-
+	Model Prue((char*)"Models/RedDog.obj");
+	Model Prue1((char*)"Models/13517_Beach_Ball_v2_L3.obj");
+	Model Prue2((char*)"Models/10107_Computer Printer_v3_L3.obj");
 
 
 	// First, set the container's VAO (and VBO)
@@ -271,6 +272,33 @@ int main()
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[3].linear"), 0.0f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[3].quadratic"), 0.0f);
 
+		// Point light 5 (Nueva luz)
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[4].position"), pointLightPositions[4].x, pointLightPositions[4].y, pointLightPositions[4].z);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[4].ambient"), 0.5f, 0.5f, 1.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[4].diffuse"), 0.5f, 0.5f, 1.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[4].specular"), 0.0f, 0.0f, 0.0f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[4].constant"), 1.0f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[4].linear"), 0.09f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[4].quadratic"), 0.032f);
+
+		// Point light 6 (Nueva luz)
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[5].position"), pointLightPositions[4].x, pointLightPositions[4].y, pointLightPositions[4].z);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[5].ambient"), 1.5f, 0.5f, 0.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[5].diffuse"), 1.5f, 0.5f, 0.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[5].specular"), 0.0f, 0.0f, 0.0f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[5].constant"), 1.0f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[5].linear"), 0.09f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[5].quadratic"), 0.032f);
+
+		// Point light 7 (Nueva luz)
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[6].position"), pointLightPositions[4].x, pointLightPositions[4].y, pointLightPositions[4].z);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[6].ambient"), 1.5f, 0.5f, 0.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[6].diffuse"), 1.5f, 0.5f, 0.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[6].specular"), 0.0f, 0.0f, 0.0f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[6].constant"), 1.0f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[6].linear"), 0.09f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[6].quadratic"), 0.032f);
+
 		// SpotLight
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.position"), camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "spotLight.direction"), camera.GetFront().x, camera.GetFront().y, camera.GetFront().z);
@@ -284,7 +312,7 @@ int main()
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "spotLight.outerCutOff"), glm::cos(glm::radians(18.0f)));
 
 		// Set material properties
-		glUniform1f(glGetUniformLocation(lightingShader.Program, "material.shininess"), 5.0f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "material.shininess"), 16.0f);
 
 		// Create camera transformations
 		glm::mat4 view;
@@ -313,15 +341,84 @@ int main()
 
 	
 		model = glm::mat4(1);
-		model = glm::scale(model, glm::vec3(0.03f));
-		glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
+		//model = glm::scale(model, glm::vec3(0.03f));
+		//glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
-	    Dog.Draw(lightingShader);
-		glDisable(GL_BLEND);  //Desactiva el canal alfa 
+	    //Dog.Draw(lightingShader);
+		//glDisable(GL_BLEND);  //Desactiva el canal alfa 
 		glBindVertexArray(0);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(1.7f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f)); // Make it a smaller cube	
+		//glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
+		for (int i = 0; i < 7; i++) {
+			if (i == 4) {
+				// activar luz 5
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + std::to_string(i) + "].diffuse").c_str()), 0.5f, 0.5f, 1.5f);
+			}
+			else {
+				// desactivar otras luces
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + std::to_string(i) + "].diffuse").c_str()), 0.0f, 0.0f, 0.0f);
+			}
+		}
+		Prue.Draw(lightingShader);
+		glBindVertexArray(0);
+
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.8f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.03f));
+		//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f)); // Make it a smaller cube	
+		//glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1i(glGetUniformLocation(lightingShader.Program, "transparency"), 1);
+		for (int i = 0; i < 7; i++) {
+			if (i == 5) {
+				// activar luz 5
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + std::to_string(i) + "].diffuse").c_str()), 0.5f, 0.5f, 1.5f);
+			}
+			else {
+				// desactivar otras luces
+				glUniform3f(glGetUniformLocation(lightingShader.Program, ("pointLights[" + std::to_string(i) + "].diffuse").c_str()), 0.0f, 0.0f, 0.0f);
+			}
+		}
+		Prue1.Draw(lightingShader);
+		glBindVertexArray(0);
+
+		model = glm::mat4(1);
+
+		model = glm::translate(model, glm::vec3(-1.4f, 0.0f, -0.9f));
+		model = glm::scale(model, glm::vec3(0.03f));
+		//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f)); // Make it a smaller cube	
+		//glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1i(glGetUniformLocation(lampShader.Program, "transparency"), 1);
+		for (int i = 0; i < 7; i++) {
+			if (i == 6) {
+				// activar luz 5
+				glUniform3f(glGetUniformLocation(lampShader.Program, ("pointLights[" + std::to_string(i) + "].diffuse").c_str()), 0.5f, 0.5f, 1.5f);
+			}
+			else {
+				// desactivar otras luces
+				glUniform3f(glGetUniformLocation(lampShader.Program, ("pointLights[" + std::to_string(i) + "].diffuse").c_str()), 0.0f, 0.0f, 0.0f);
+			}
+		}
+		Prue2.Draw(lampShader);
+		glBindVertexArray(0);
+
+
+		
+
+
 	
 
 		// Also draw the lamp object, again binding the appropriate shader
@@ -349,8 +446,6 @@ int main()
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
 		glBindVertexArray(0);
-
-
 
 		// Swap the screen buffers
 		glfwSwapBuffers(window);
